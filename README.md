@@ -4,12 +4,18 @@ End-to-end streaming data pipeline built on Databricks Delta Live Tables, PySpar
 
 ## Architecture
 
+
+## DLT Pipeline Files
+
 | Layer | Purpose |
 |---|---|
-| 00_landing | Raw streaming files in Unity Catalog Volume |
-| 01_bronze | Auto Loader ingestion, schema enforcement, primary key validation |
-| 02_silver | Cleaning, SCD Type 2, data quality expectations |
-| 03_gold | Aggregations and materialized views |
+| `01_bronze.py` | Bronze layer: Raw data ingestion from source files |
+| `02A_silver.py` | Silver layer: Sales data cleaning and transformation |
+| `02B_silver.py` | Silver layer: Customer dimension with SCD Type 2 |
+| `02C_silver.py` | Silver layer: Product dimension with SCD Type 2 |
+| `02D_silver.py` | Silver layer: Store dimension with SCD Type 2 |
+| `03_gold.py` | Gold layer: Business-ready aggregations and analytics |
+| `variables.py` | Shared catalog, schema, and path variables |
 
 ## Key Features
 
